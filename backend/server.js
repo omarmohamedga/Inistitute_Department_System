@@ -15,7 +15,7 @@ mongoose.connect('mongodb://127.0.0.1:27017/institute_system')
 
 app.post('/api/register', async (req, res) => {
     try {
-        const { name, email, password, rollNo, semester } = req.body;
+        const { name, email, password, rollNo, academicYear } = req.body;
 
         const existingStudent = await Student.findOne({ email });
         if (existingStudent) {
@@ -30,7 +30,7 @@ app.post('/api/register', async (req, res) => {
             email,
             password: hashedPassword,
             rollNo,
-            semester
+            academicYear
         });
 
         await newStudent.save();

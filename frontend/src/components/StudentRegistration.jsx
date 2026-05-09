@@ -6,7 +6,7 @@ const StudentRegistration = () => {
         email: '',
         password: '',
         rollNo: '',
-        semester: ''
+        academicYear: ''
     });
     
     const [message, setMessage] = useState({ type: '', text: '' });
@@ -34,7 +34,7 @@ const StudentRegistration = () => {
 
             if (response.ok) {
                 setMessage({ type: 'success', text: data.message });
-                setFormData({ name: '', email: '', password: '', rollNo: '', semester: '' });
+                setFormData({ name: '', email: '', password: '', rollNo: '', academicYear: '' });
             } else {
                 setMessage({ type: 'danger', text: data.message });
             }
@@ -84,6 +84,7 @@ const StudentRegistration = () => {
                                         className="form-control" 
                                         required 
                                         placeholder="name@example.com" 
+                                        pattern="^[a-z0-9]+@[a-z]+\.com$"
                                     />
                                 </div>
                                 <div className="mb-3">
@@ -91,6 +92,7 @@ const StudentRegistration = () => {
                                     <input 
                                         type="password" 
                                         name="password" 
+                                        minLength="6"
                                         value={formData.password} 
                                         onChange={handleChange} 
                                         className="form-control" 
@@ -108,23 +110,24 @@ const StudentRegistration = () => {
                                             onChange={handleChange} 
                                             className="form-control" 
                                             required 
-                                            placeholder="e.g. 2023001" 
+                                            placeholder="2023001" 
+                                            pattern="[0-9]+"
                                         />
                                     </div>
                                     <div className="col-md-6">
-                                        <label className="form-label text-muted">Semester</label>
+                                        <label className="form-label text-muted">Academic Year</label>
                                         <select 
-                                            name="semester" 
-                                            value={formData.semester} 
+                                            name="academicYear" 
+                                            value={formData.academicYear} 
                                             onChange={handleChange} 
                                             className="form-select" 
                                             required
                                         >
                                             <option value="">Select...</option>
-                                            <option value="1st Semester">1st Semester</option>
-                                            <option value="2nd Semester">2nd Semester</option>
-                                            <option value="3rd Semester">3rd Semester</option>
-                                            <option value="4th Semester">4th Semester</option>
+                                            <option value="1st AcademicYear">1st AcademicYear</option>
+                                            <option value="2nd AcademicYear">2nd AcademicYear</option>
+                                            <option value="3rd AcademicYear">3rd AcademicYear</option>
+                                            <option value="4th AcademicYear">4th AcademicYear</option>
                                         </select>
                                     </div>
                                 </div>
